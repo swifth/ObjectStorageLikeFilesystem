@@ -1,13 +1,17 @@
-# ObjectStorageLikeFilesystem
-You can always treat AWS S3 and Aliyun OSS like linux/unix/windows filesystem! And you can change vender as your wish!
+# Swifth-Storage Movtivations
+1. You can always treat AWS S3 or Aliyun OSS like linux/unix/windows filesystem! You can use most of shell commands.
+2. And you can change vender as your wish anytime. More Object Storage provider will be supported later.
+3. You can use typical java.io alike API to access the underlay object stroage. Even if you don't know any s3 sdk or oss sdk.
+4. Java/Kotlin/Scala are supported.
 
-Mimic typical filesystem. 
+# CLI
+Mimic typical unix-like filesystem commands.
 
-CLI usage.
-ls       List files and folders.
-mb       Make a bucket or a folder.
+```shell
+ls       List files and folders.  
+mb       Make a bucket or a folder.  
 cat      Display file and object contents.
-pipe     Redirect STDIN to an object or file or STDOUT.
+pipe     Redirect STDIN to an object or file or STDOUT.  
 share    Generate URL for sharing.
 cp       Copy files and objects.
 mirror   Mirror buckets and folders.
@@ -21,16 +25,24 @@ session  Manage saved sessions for cp command.
 config   Manage mc configuration file.
 update   Check for a new software update.
 version  Print version info.
+```
 
+# API
 
-API usage.
-use Storage;
-```    
-> Then You can use all APIs of laravel Storage
+```java
+import edu.ustc.swifth.*
+```
+> Then You can use all APIs of swifth Storage
 
-```php
-Storage::disk('oss'); // if default filesystems driver is oss, you can skip this step
+```java
+Swifth.storageType("oss");
+Swifth.storageOSS();  // oss
+Swifth.storageS3();   // s3
+```
+> If default filesystems driver is oss, you can skip this step.  
+> Both "s3" | "oss", indicates Amazon and aliyun. 
 
+```java
 //fetch all files of specified bucket(see upond configuration)
 Storage::files($directory);
 Storage::allFiles($directory);
